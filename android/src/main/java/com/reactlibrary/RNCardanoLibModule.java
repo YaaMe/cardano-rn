@@ -4,7 +4,7 @@ package com.reactlibrary;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Promise;
+import com.facebook.react.bridge.Callback;
 
 public class RNCardanoLibModule extends ReactContextBaseJavaModule {
     static {
@@ -23,11 +23,11 @@ public class RNCardanoLibModule extends ReactContextBaseJavaModule {
     }
     private static native String greeting(String pattern);
     @ReactMethod
-    public void show(String message, Promise promise) {
-        promise.resolv(message);
+    public void show(String message, Callback cb) {
+        cb.invoke(message);
     }
     @ReactMethod
-    public void invokeRustGreeting(String message, Promise promise) {
-        promise.resolv(greeting(message));
+    public void invokeRustGreeting(String message, Callback cb) {
+        cb.invoke(greeting(message));
     }
 }
